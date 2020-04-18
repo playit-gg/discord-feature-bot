@@ -6,7 +6,7 @@ from discord.ext import commands
 TOKEN = open("discord.key","r").readline()
 bot = commands.Bot(command_prefix='!')
 bot.remove_command("help")
-timeout = 2
+timeout = 1
 logs = {}
 
 @bot.event
