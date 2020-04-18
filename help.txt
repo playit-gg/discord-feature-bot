@@ -1,8 +1,8 @@
 ```
 PlayIt.gg Support
 
-!help    Shows this message
-!ping    Shows the ping of the bot
+!help      Shows this message
+!ping      Shows the ping of the bot
 !checkspam Shows how many violations the user has on spam
 
 If you need any help with commands contact the support team
