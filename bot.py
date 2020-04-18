@@ -1,15 +1,13 @@
 import discord
 from discord.ext import commands
-TOKEN = open("token.txt.gitignore","r").readline()
+TOKEN = open("discord.key","r").readline()
 bot = commands.Bot(command_prefix='!')
-
-players = {}
 
 @bot.event
 async def on_ready():
     print(f'Logged in as: {bot.user.name}')
     print(f'Bot is ready')
-    await bot.change_presence(activity=discord.Game(name=f'Playit.gg'))
+    await bot.change_presence(activity=discord.Game(name=f'Suggestion Bot'))
 
 @bot.event
 async def on_message(message):
