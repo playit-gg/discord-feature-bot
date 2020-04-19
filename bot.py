@@ -6,7 +6,7 @@ from discord.ext import commands
 TOKEN = open("discord.key","r").readline()
 bot = commands.Bot(command_prefix='!')
 bot.remove_command("help")
-timeout = 1
+timeout = 3
 logs = {}
 
 @bot.event
@@ -70,10 +70,10 @@ async def help(ctx):
     embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", color=0xff8000)
     embed.set_author(name="PlayIt Support Bot",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
-    embed.add_field(name="!help", value="Shows this message", inline=False)
-    embed.add_field(name="!website", value="Shows the Playit.gg website link", inline=False)
-    embed.add_field(name="!ping", value="Shows the ping of the bot", inline=False)
-    embed.add_field(name="!checkspam", value="Shows how many violations the user has on spam", inline=False)
+    embed.add_field(name="```!help```", value="Shows this message", inline=False)
+    embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
+    embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
+    embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
     embed.set_footer(text="If you need any help with commands contact the support team")
     await ctx.send(embed=embed)
 
@@ -82,13 +82,13 @@ async def helpadmin(ctx):
     embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", color=0xff8000)
     embed.set_author(name="PlayIt Support Bot",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
-    embed.add_field(name="!help", value="Shows this message", inline=False)
-    embed.add_field(name="!website", value="Shows the Playit.gg website link", inline=False)
-    embed.add_field(name="!ping", value="Shows the ping of the bot", inline=False)
-    embed.add_field(name="!checkspam", value="Shows how many violations the user has on spam", inline=False)
-    embed.add_field(name="!timeoutset", value="Sets how many seconds a user can send a message until its considerd spam" , inline=False)
-    embed.add_field(name="!setreactionchannel", value="Sets the reaction channel for the bot", inline=False)
-    embed.add_field(name="!shutdown", value="Shuts the bot down (Owner Only)", inline=False)
+    embed.add_field(name="```!help```", value="Shows this message", inline=False)
+    embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
+    embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
+    embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
+    embed.add_field(name="```!timeoutset```", value="Sets how many seconds a user can send a message until its considerd spam" , inline=False)
+    embed.add_field(name="```!setreactionchannel```", value="Sets the reaction channel for the bot", inline=False)
+    embed.add_field(name="```!shutdown```", value="Shuts the bot down (Owner Only)", inline=False)
     embed.set_footer(text="If you need any help with commands contact the support team")
     await ctx.send(embed=embed)
 
