@@ -27,7 +27,7 @@ async def on_message(message):
     if message.author.id in logs:
         delta = message.created_at-logs[message.author.id].lastMessage
         userid = message.author.id
-        if(delta.seconds < timeout):
+        if delta.seconds < timeout:
             logs[message.author.id].violations += 1
             await message.delete()
             await(await message.channel.send(f'<@!{userid}> no spamming allowed!'.format(message.author))).delete(delay=5)
