@@ -1,5 +1,7 @@
 import discord
 import asyncio
+import ping3
+from ping3 import ping, verbose_ping
 from log import Log
 from datetime import date, datetime, timedelta
 from discord.ext import commands
@@ -38,8 +40,8 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
-@bot.command()
-async def ping(ctx):
+@bot.command(name="ping")
+async def _ping(ctx):
     await ctx.send(f'🏓 Pong! {round(bot.latency * 1000)}ms')
 
 @bot.command()
@@ -74,6 +76,7 @@ async def help(ctx):
     embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
     embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
     embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
+    embed.add_field(name="```!status```", value="Shows the ping of all Playit.gg servers", inline=False)
     embed.set_footer(text="If you need any help with commands contact the support team")
     await ctx.send(embed=embed)
 
@@ -86,6 +89,7 @@ async def helpadmin(ctx):
     embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
     embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
     embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
+    embed.add_field(name="```!status```", value="Shows the ping of all Playit.gg servers", inline=False)
     embed.add_field(name="```!timeoutset```", value="Sets how many seconds a user can send a message until its considerd spam" , inline=False)
     embed.add_field(name="```!setreactionchannel```", value="Sets the reaction channel for the bot", inline=False)
     embed.add_field(name="```!shutdown```", value="Shuts the bot down (Owner Only)", inline=False)
@@ -104,6 +108,21 @@ async def setreactionchannel(ctx):
 @bot.command()
 async def website(ctx):
     await ctx.send('https://playit.gg')
+
+@bot.command()
+async def status(ctx):
+    embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
+    embed.set_author(name="PlayIt.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed.add_field(name="FNK1", value=round(ping('fnk1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="SNG1", value=round(ping('SNG1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="BNG1", value=round(ping('bng1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="NY1", value=round(ping('ny1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="SF1", value=round(ping('Sf1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="SYD1", value=round(ping('Syd1.playit.gg') * 1000, 2), inline=False)
+    embed.add_field(name="AMS1", value=round(ping('ams1.playit.gg') * 1000, 2), inline=False)
+    embed.set_footer(text="PlayIt.gg Ping (The bot is located in the United Kingdom so ping may varity with your location")
+    await ctx.send(embed=embed)
 
 
 async def background_task():
