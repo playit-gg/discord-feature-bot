@@ -20,6 +20,10 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=f'Suggestion Bot'))
 
 @bot.event
+async def on_member_join(member):
+    await member.send("Welcome to PlayIt.gg!")
+
+@bot.event
 async def on_message(message):
     if message.channel.id == newreaction:
         await message.add_reaction('✅')
@@ -121,7 +125,7 @@ async def status(ctx):
     embed.add_field(name="SF1 - San Francisco", value=round(ping('Sf1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="SYD1 - Sydney", value=round(ping('Syd1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="AMS1 - Amsterdam", value=round(ping('ams1.playit.gg') * 1000, 2), inline=False)
-    embed.set_footer(text="PlayIt.gg Ping (The bot is located in the United Kingdom so ping may varity with your location")
+    embed.set_footer(text="PlayIt.gg Ping (The bot is located in the United Kingdom so ping may varity with your location)")
     await ctx.send(embed=embed)
 
 
