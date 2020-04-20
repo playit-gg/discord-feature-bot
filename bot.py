@@ -8,6 +8,8 @@ bot = commands.Bot(command_prefix='!')
 bot.remove_command("help")
 timeout = 3
 logs = {}
+reaction = open("reaction.txt","r").readline()
+newreaction = int(reaction)
 
 @bot.event
 async def on_ready():
@@ -17,8 +19,6 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    reaction = open("reaction.txt","r").readline()
-    newreaction = int(reaction)
     if message.channel.id == newreaction:
         await message.add_reaction('✅')
         await message.add_reaction('❌')
@@ -27,7 +27,7 @@ async def on_message(message):
     if message.author.id in logs:
         delta = message.created_at-logs[message.author.id].lastMessage
         userid = message.author.id
-        if(delta.seconds < timeout):
+        if delta.seconds < timeout:
             logs[message.author.id].violations += 1
             await message.delete()
             await(await message.channel.send(f'<@!{userid}> no spamming allowed!'.format(message.author))).delete(delay=5)
@@ -99,7 +99,6 @@ async def setreactionchannel(ctx):
     w = open('reaction.txt', 'w')
     w.write(reactionchannelstr)
     w.close()
-    print(reactionchannel)
     await ctx.send(f"The channel has been set to {ctx.channel}")
 
 @bot.command()
