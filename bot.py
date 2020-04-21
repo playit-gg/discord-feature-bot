@@ -8,7 +8,7 @@ from discord.ext import commands
 TOKEN = open("discord.key","r").readline()
 bot = commands.Bot(command_prefix='!')
 bot.remove_command("help")
-timeout = 3
+timeout = 1
 logs = {}
 reaction = open("reaction.txt","r").readline()
 newreaction = int(reaction)
@@ -21,7 +21,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    await member.send("Welcome to PlayIt.gg!")
+    await member.send("Welcome to Playit.gg!")
 
 @bot.event
 async def on_message(message):
@@ -73,8 +73,8 @@ async def shutdown(ctx):
 
 @bot.command()
 async def help(ctx):
-    embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", color=0xff8000)
-    embed.set_author(name="PlayIt Support Bot",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", color=0xff8000)
+    embed.set_author(name="Playit Support Bot",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.add_field(name="```!help```", value="Shows this message", inline=False)
     embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
@@ -86,7 +86,7 @@ async def help(ctx):
 
 @bot.command()
 async def helpadmin(ctx):
-    embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", color=0xff8000)
+    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", color=0xff8000)
     embed.set_author(name="PlayIt Support Bot",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.add_field(name="```!help```", value="Shows this message", inline=False)
@@ -101,6 +101,7 @@ async def helpadmin(ctx):
     await ctx.send(embed=embed)
 
 @bot.command()
+@commands.is_owner()
 async def setreactionchannel(ctx):
     reactionchannel = ctx.channel.id
     reactionchannelstr = str(reactionchannel)
@@ -115,8 +116,8 @@ async def website(ctx):
 
 @bot.command()
 async def status(ctx):
-    embed=discord.Embed(title="PlayIt.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
-    embed.set_author(name="PlayIt.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
+    embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.add_field(name="FNK1 - Germany", value=round(ping('fnk1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="SNG1 - Singapore", value=round(ping('SNG1.playit.gg') * 1000, 2), inline=False)
@@ -125,7 +126,7 @@ async def status(ctx):
     embed.add_field(name="SF1 - San Francisco", value=round(ping('Sf1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="SYD1 - Sydney", value=round(ping('Syd1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="AMS1 - Amsterdam", value=round(ping('ams1.playit.gg') * 1000, 2), inline=False)
-    embed.set_footer(text="PlayIt.gg Ping (The bot is located in the United Kingdom so ping may varity with your location)")
+    embed.set_footer(text="Playit.gg Ping (The bot is located in the United Kingdom so ping may vary with your location)")
     await ctx.send(embed=embed)
 
 
