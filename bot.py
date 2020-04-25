@@ -153,7 +153,7 @@ async def status(ctx):
       onlineams1 = "Online"
     else:
         onlineams1 = "Offline"
-    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
+    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description=" ", color=0xff8000)
     embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.add_field(name="FNK1 - Germany", value=onlinefnk1, inline=False)
