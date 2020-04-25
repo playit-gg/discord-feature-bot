@@ -80,7 +80,8 @@ async def help(ctx):
     embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
     embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
     embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
-    embed.add_field(name="```!status```", value="Shows the ping of all Playit.gg servers", inline=False)
+    embed.add_field(name="```!status```", value="Shows the status of all Playit.gg servers", inline=False)
+    embed.add_field(name="```!pingstatus```", value="Shows the ping of all Playit.gg servers", inline=False)
     embed.set_footer(text="If you need any help with commands contact the support team")
     await ctx.send(embed=embed)
 
@@ -93,7 +94,8 @@ async def helpadmin(ctx):
     embed.add_field(name="```!website```", value="Shows the Playit.gg website link", inline=False)
     embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
     embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
-    embed.add_field(name="```!status```", value="Shows the ping of all Playit.gg servers", inline=False)
+    embed.add_field(name="```!status```", value="Shows the status of all Playit.gg servers", inline=False)
+    embed.add_field(name="```!pingstatus```", value="Shows the ping of all Playit.gg servers", inline=False)
     embed.add_field(name="```!timeoutset```", value="Sets how many seconds a user can send a message until its considerd spam" , inline=False)
     embed.add_field(name="```!setreactionchannel```", value="Sets the reaction channel for the bot", inline=False)
     embed.add_field(name="```!shutdown```", value="Shuts the bot down (Owner Only)", inline=False)
@@ -116,6 +118,56 @@ async def website(ctx):
 
 @bot.command()
 async def status(ctx):
+    #FNK1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlinefnk1 = "Online"
+    else:
+        onlinefnk1 = "Offline"
+    #SNG1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlinesng1 = "Online"
+    else:
+        onlinesng1 = "Offline"
+    #BNG1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlinebng1 = "Online"
+    else:
+        onlinebng1 = "Offline"
+    #NY1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlineny1 = "Online"
+    else:
+        onlineny1 = "Offline"
+    #SF1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlinesf1 = "Online"
+    else:
+        onlinesf1 = "Offline"
+    #SYD1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlinesyd1 = "Online"
+    else:
+        onlinesyd1 = "Offline"
+    #AMS1
+    if round(ping('fnk1.playit.gg') * 1000, 2) > 0:
+      onlineams1 = "Online"
+    else:
+        onlineams1 = "Offline"
+    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
+    embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+    embed.add_field(name="FNK1 - Germany", value=onlinefnk1, inline=False)
+    embed.add_field(name="SNG1 - Singapore", value=onlinesng1, inline=False)
+    embed.add_field(name="BNG1 - Bangalore", value=onlinebng1, inline=False)
+    embed.add_field(name="NY1 - New York", value=onlineny1, inline=False)
+    embed.add_field(name="SF1 - San Francisco", value=onlinesf1, inline=False)
+    embed.add_field(name="SYD1 - Sydney", value=onlinesyd1, inline=False)
+    embed.add_field(name="AMS1 - Amsterdam", value=onlineams1, inline=False)
+    embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS STATUS ON THE SERVERS NOT YOU)")
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def pingstatus(ctx):
     embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
     embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
     embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
@@ -126,9 +178,8 @@ async def status(ctx):
     embed.add_field(name="SF1 - San Francisco", value=round(ping('Sf1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="SYD1 - Sydney", value=round(ping('Syd1.playit.gg') * 1000, 2), inline=False)
     embed.add_field(name="AMS1 - Amsterdam", value=round(ping('ams1.playit.gg') * 1000, 2), inline=False)
-    embed.set_footer(text="Playit.gg Ping (The bot is located in the United Kingdom so ping may vary with your location)")
+    embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS PING ON THE SERVERS NOT YOU)")
     await ctx.send(embed=embed)
-
 
 async def background_task():
     await bot.wait_until_ready()
