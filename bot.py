@@ -4,25 +4,35 @@ import ping3
 import os
 import dotenv
 from dotenv import load_dotenv
-load_dotenv()
 from ping3 import ping, verbose_ping
 from log import Log
 from datetime import date, datetime, timedelta
 from discord.ext import commands
-TOKEN=os.getenv("DISCORDTOKEN")
-reactioncheck=os.getenv("REACTIONCHECK")
-reaction=os.getenv("REACTIONCHANNEL")
-antispam=os.getenv("ANTISPAM")
-timeout=os.getenv("TIMEOUT")
-botprefix=os.getenv("BOTPREFIX")
-reaction = int(reaction)
-reactioncheck = int(reactioncheck)
-antispam = int(antispam)
-timeout = int(timeout)
+
+load_dotenv()
+
+TOKEN = os.getenv("DISCORDTOKEN")
+reactioncheck = int(os.getenv("REACTIONCHECK"))
+reaction = int(os.getenv("REACTIONCHANNEL"))
+antispam = int(os.getenv("ANTISPAM"))
+timeout = int(os.getenv("TIMEOUT"))
+botprefix = os.getenv("BOTPREFIX")
+
 bot = commands.Bot(command_prefix=botprefix)
 bot.remove_command("help")
+
+servers = [
+    "fnk1.playit.gg",
+    "sng1.playit.gg",
+    "bng1.playit.gg",
+    "ny1.playit.gg",
+    "sf1.playit.gg",
+    "syd1.playit.gg",
+    "ams1.playit.gg"
+]
+
 logs = {}
-servers =["fnk1.playit.gg", "sng1.playit.gg", "bng1.playit.gg", "ny1.playit.gg", "sf1.playit.gg", "syd1.playit.gg", "ams1.playit.gg"]
+
 @bot.event
 async def on_ready():
     print(f'Logged in as: {bot.user.name}')
