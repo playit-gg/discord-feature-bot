@@ -41,7 +41,7 @@ async def on_ready():
 
 @bot.event
 async def on_member_join(member):
-    await member.send("Welcome to Playit.gg!")
+    await member.send("Welcome to Playit.gg! Hope you enjoy your stay")
 
 @bot.event
 async def on_message(message):
@@ -100,7 +100,6 @@ async def help(ctx):
     embed.add_field(name="```!ping```", value="Shows the ping of the bot", inline=False)
     embed.add_field(name="```!checkspam```", value="Shows how many violations the user has on spam", inline=False)
     embed.add_field(name="```!status```", value="Shows the status of all Playit.gg servers", inline=False)
-    embed.add_field(name="```!pingstatus```", value="Shows the ping of all Playit.gg servers", inline=False)
     embed.set_footer(text="If you need any help with commands contact the support team")
     await ctx.send(embed=embed)
 
@@ -130,7 +129,59 @@ async def status(ctx):
     embed.add_field(name="SYD1 - Sydney", value=serverpings[5], inline=False)
     embed.add_field(name="AMS1 - Amsterdam", value=serverpings[6], inline=False)
     embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS STATUS ON THE SERVERS NOT YOU)")
-    await ctx.send(embed=embed)
+    startmsg = await ctx.send(embed=embed)
+    await startmsg.add_reaction('🏠')
+    await startmsg.add_reaction('📊')
+    while True:
+        onlineemoji = ['🏠']
+        pingemoji = ['📊']
+        timeout = 120
+        reaction, user = await bot.wait_for('reaction_add')
+        timeout
+        if reaction.message.id == startmsg.id and user.bot is not True:
+            if str(reaction.emoji) in onlineemoji:
+                await reaction.message.remove_reaction('🏠', user)
+                await startmsg.add_reaction('📊')
+                serverpings=[]
+                for x in servers:
+                    myping = round(ping(x) * 1000, 2)
+                    if myping > 0:
+                       myping = 'Online'
+                    else:
+                        myping = 'Offline'
+                    serverpings.append(myping)
+                embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description=" ", color=0xff8000)
+                embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+                embed.add_field(name="FNK1 - Germany", value=serverpings[0], inline=False)
+                embed.add_field(name="SNG1 - Singapore", value=serverpings[1], inline=False)
+                embed.add_field(name="BNG1 - Bangalore", value=serverpings[2], inline=False)
+                embed.add_field(name="NY1 - New York", value=serverpings[3], inline=False)
+                embed.add_field(name="SF1 - San Francisco", value=serverpings[4], inline=False)
+                embed.add_field(name="SYD1 - Sydney", value=serverpings[5], inline=False)
+                embed.add_field(name="AMS1 - Amsterdam", value=serverpings[6], inline=False)
+                embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS STATUS ON THE SERVERS NOT YOU)")
+                await startmsg.edit(embed=embed)
+            if str(reaction.emoji) in pingemoji:
+                await reaction.message.remove_reaction('📊', user)
+                await startmsg.add_reaction('🏠')
+                serverpings=[]
+                for x in servers:
+                    myping = round(ping(x) * 1000, 2)
+                    serverpings.append(myping)
+                embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
+                embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+                embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
+                embed.add_field(name="FNK1 - Germany", value=serverpings[0], inline=False)
+                embed.add_field(name="SNG1 - Singapore", value=serverpings[1], inline=False)
+                embed.add_field(name="BNG1 - Bangalore", value=serverpings[2], inline=False)
+                embed.add_field(name="NY1 - New York", value=serverpings[3], inline=False)
+                embed.add_field(name="SF1 - San Francisco", value=serverpings[4], inline=False)
+                embed.add_field(name="SYD1 - Sydney", value=serverpings[5], inline=False)
+                embed.add_field(name="AMS1 - Amsterdam", value=serverpings[6], inline=False)
+                embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS PING ON THE SERVERS NOT YOU)")
+                await startmsg.edit(embed=embed)
+                await startmsg.add_reaction('🏠')
 
 @bot.command()
 async def pingstatus(ctx):
