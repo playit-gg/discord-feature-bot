@@ -183,24 +183,61 @@ async def status(ctx):
                 await startmsg.edit(embed=embed)
                 await startmsg.add_reaction('🏠')
 
-@bot.command()
-async def pingstatus(ctx):
-    serverpings=[]
-    for x in servers:
-        myping = round(ping(x) * 1000, 2)
-        serverpings.append(myping)
-    embed=discord.Embed(title="Playit.gg", url="https://playit.gg", description="All values are in ms", color=0xff8000)
-    embed.set_author(name="Playit.gg Status",icon_url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
-    embed.set_thumbnail(url="https://cdn.discordapp.com/icons/686968015715172423/549bbcb96439ceb83ee39346f070e34c.png?size=128")
-    embed.add_field(name="FNK1 - Germany", value=serverpings[0], inline=False)
-    embed.add_field(name="SNG1 - Singapore", value=serverpings[1], inline=False)
-    embed.add_field(name="BNG1 - Bangalore", value=serverpings[2], inline=False)
-    embed.add_field(name="NY1 - New York", value=serverpings[3], inline=False)
-    embed.add_field(name="SF1 - San Francisco", value=serverpings[4], inline=False)
-    embed.add_field(name="SYD1 - Sydney", value=serverpings[5], inline=False)
-    embed.add_field(name="AMS1 - Amsterdam", value=serverpings[6], inline=False)
-    embed.set_footer(text="Playit.gg Status (THIS IS THE BOTS PING ON THE SERVERS NOT YOU)")
-    await ctx.send(embed=embed)
+#@bot.command()
+#async def new(ctx, member: discord.Member = None):
+#    await ctx.send('A ticket has been made!')
+#    if member == None:
+#        member = ctx.message.author
+#    server = ctx.message.guild
+#    createchannel = await server.create_text_channel(f"ticket-{member.display_name}")
+#    embed = discord.Embed(title=f"New ticket created",
+ #                         description=f"Hello {member.mention}, A support member will be with you soon.", color=0xff8000)
+ ##   embed.set_footer(text=f"Ticket number: {createchannel.id}", icon_url=member.avatar_url)
+#    staff = discord.utils.get(ctx.message.author.guild.roles, name="moderator")
+#    contributor = discord.utils.get(ctx.message.author.guild.roles, name="contributor")
+#    dev = discord.utils.get(ctx.message.author.guild.roles, name="code slinger")
+#    everyone = ctx.message.author.guild.default_role
+#    disallow = discord.PermissionOverwrite()
+#    disallow.read_messages = False
+#    disallow.send_messages = False
+#    allow = discord.PermissionOverwrite()
+#    allow.read_messages = True
+#    allow.send_messages = True
+#    await createchannel.set_permissions(everyone, overwrite=disallow)
+#    await createchannel.set_permissions(ctx.message.author, overwrite=allow)
+#    await createchannel.set_permissions(staff, overwrite=allow)
+#    await createchannel.set_permissions(contributor, overwrite=allow)
+#    await createchannel.set_permissions(dev, overwrite=allow)
+#    await createchannel.send(embed=embed)
+
+#@bot.command()
+#async def close(ctx):
+#    staff = discord.utils.get(ctx.message.author.guild.roles, name="moderator")
+#    contributor = discord.utils.get(ctx.message.author.guild.roles, name="contributor")
+#    dev = discord.utils.get(ctx.message.author.guild.roles, name="code slinger")
+#    if staff in ctx.author.roles:
+#        channel = ctx.message.channel
+#        embed = discord.Embed(
+#            title="Closing ticket", description="This ticket will be closed in 60 seconds", color=0xff8000)
+#        await ctx.send(embed=embed)
+#        await asyncio.sleep(60)
+#        await channel.delete(reason="Ticket closed")
+#    if contributor in ctx.author.roles:
+#        channel = ctx.message.channel
+#        embed = discord.Embed(
+#            title="Closing ticket", description="This ticket will be closed in 60 seconds", color=0xff8000)
+#        await ctx.send(embed=embed)
+#        await asyncio.sleep(60)
+#        await channel.delete(reason="Ticket closed")
+#    if dev in ctx.author.roles:
+#        channel = ctx.message.channel()
+#        embed = discord.Embed(
+#            title="Closing ticket", description="This ticket will be closed in 60 seconds", color=0xff8000)
+#        await ctx.send(embed=embed)
+#        await asyncio.sleep(60)
+#        await channel.delete(reason="Ticket closed")
+#    else:
+#        await ctx.send(":x: You do not have permission to do that.")
 
 async def background_task():
     await bot.wait_until_ready()
