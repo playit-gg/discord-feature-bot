@@ -159,6 +159,51 @@ async def background_task():
         await bot.change_presence(activity=discord.Game(name=f'Playit.gg'))
         await asyncio.sleep(8)
 
+ROLE_MANAGE_MSG = 720659189344763905
+ANNOUNCE_ID = 702597657562054678
+
+@bot.event
+async def on_raw_reaction_add(payload):
+    reaction = str(payload.emoji)
+    msg_id = payload.message_id
+    ch_id = payload.channel_id
+    user_id = payload.user_id
+    guild_id = payload.guild_id
+
+    if msg_id == ROLE_MANAGE_MSG:
+        ch = bot.get_channel(ch_id)
+        user = bot.get_user(user_id)
+
+        if reaction == '👂':
+            role_id = ANNOUNCE_ID
+            server = bot.get_guild(guild_id)
+            member = server.get_member(user_id)
+            role = discord.utils.get(server.roles, id=role_id)
+            await member.add_roles(role)
+        else:
+            msg = await ch.fetch_message(msg_id)
+            await msg.remove_reaction(reaction, user)
+
+
+@bot.event
+async def on_raw_reaction_remove(payload):
+    reaction = str(payload.emoji)
+    msg_id = payload.message_id
+    ch_id = payload.channel_id
+    user_id = payload.user_id
+    guild_id = payload.guild_id
+
+    if msg_id == ROLE_MANAGE_MSG:
+        ch = bot.get_channel(ch_id)
+        user = bot.get_user(user_id)
+
+        if reaction == '👂':
+            role_id = ANNOUNCE_ID
+            server = bot.get_guild(guild_id)
+            member = server.get_member(user_id)
+            role = discord.utils.get(server.roles, id=role_id)
+            await member.remove_roles(role)
+
 bot.loop.create_task(background_task())
 
 bot.run(TOKEN.strip())
